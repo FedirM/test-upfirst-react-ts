@@ -1,14 +1,19 @@
 
 import './App.css';
-import { defaultTheme, Provider } from '@adobe/react-spectrum';
+import { Provider as ReduxProvider } from 'react-redux';
+import store from './state/store';
+import { defaultTheme, Provider as SpectrumProvider } from '@adobe/react-spectrum';
 
 import MainMenuComponent from './components/menu';
 import HeaderComponent from './components/header';
 import FooterComponent from './components/footer';
+import CardList from './components/card-list';
 
 function App() {
+
   return (
-    <Provider theme={defaultTheme}>
+    <ReduxProvider store={store}>
+      <SpectrumProvider theme={defaultTheme}>
       <div className='container'>
         <div className="menu-wrapper">
             <MainMenuComponent></MainMenuComponent>
@@ -19,6 +24,7 @@ function App() {
           </div>
           <div className='content-wrapper'>
             <h3>Main area</h3>
+            <CardList />
             <div className='test-content'>Content</div>
           </div>
           <div className='footer-wrapper'>
@@ -26,7 +32,8 @@ function App() {
           </div>
         </div>
       </div>
-    </Provider>
+    </SpectrumProvider>
+    </ReduxProvider>
   );
 }
 
