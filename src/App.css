@@ -27,8 +27,7 @@
   bottom: 0;
 
   flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .header-wrapper {
@@ -39,7 +38,10 @@
 }
 
 .content-wrapper {
-  flex: 1;
+  flex: var(--content-viewport-height) 1 1;
+  max-height: var(--content-viewport-height);
+  overflow: auto;
+  padding: 20px 0;
 }
 
 .test-content {

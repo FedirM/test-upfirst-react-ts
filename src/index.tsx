@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+import { defaultTheme, Provider as SpectrumProvider } from '@adobe/react-spectrum';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <SpectrumProvider theme={defaultTheme}>
+        <App />
+      </SpectrumProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

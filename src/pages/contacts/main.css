@@ -1,0 +1,56 @@
+.page {
+    height: 100dvh;
+    width: 100dvw;
+    padding-top: 280px;
+}
+
+.info-block {
+    height: 250px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.contacts-label {
+    flex: content 0 0;
+}
+
+.social-links {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.social-link {
+    text-decoration: none;
+    color: var(--spectrum-alias-text-color);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 8px;
+    font-size: 24px;
+    transition: transform 0.3s;
+}
+
+.social-link:hover .icon {
+    transform: scale(1.2);
+}
+
+.social-link:hover {
+    color: var(--spectrum-global-color-static-blue-600); /* LinkedIn blue or choose your color */
+}
+
+.back-btn-wrapper {
+    position: absolute;
+
+    left: 30px;
+    top: 45px;
+}

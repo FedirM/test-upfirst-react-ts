@@ -1,6 +1,9 @@
+import './main.css';
+
 import { useEffect } from 'react';
 import { requestAllProducts } from '../../state/productActions';
 import { useAppDispatch, useAppSelector } from '../../interfaces/share';
+import CardComponent from '../card';
 
 
 function CardList() {
@@ -9,16 +12,20 @@ function CardList() {
     const products = useAppSelector(state => state.product.products);
 
     useEffect(() => {
-        console.log('Products: ', products);
-    })
-
-    function BtnClick(e: any) {
-        console.log('click: ', e);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useDispatch(requestAllProducts());
-    }
+    }, [useDispatch]);
 
     return (
-        <div onClick={BtnClick}>Hello, there@!</div>
+        <div className="card-list-wrapper">
+            {
+                products && products.map((p, i) => 
+                    <div key={i} className="card-list-item">
+                        <CardComponent data={p} />
+                    </div>
+                )
+            }
+        </div>
     )
 }
 
