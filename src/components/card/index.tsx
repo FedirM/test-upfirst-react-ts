@@ -1,10 +1,9 @@
 import './main.css';
-import { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Product } from "../../interfaces/product";
 import { FaAngleRight, FaStar } from "react-icons/fa";
 import { useWindowSize } from '../../hooks/useWindowResize';
-import { Button, Text } from '@adobe/react-spectrum';
 import { FaCartPlus } from "react-icons/fa";
 
 interface Props {
@@ -32,11 +31,14 @@ function CardComponent(props: Props) {
 
     function getMaxHeight(): string {
         if(cardContentRef && isOpen) {
-            // @ts-ignore
             return '400px';
         } else {
             return '0px';
         }
+    }
+
+    function stopPropagation(e: React.MouseEvent<HTMLElement>) {
+        e.stopPropagation();
     }
 
     return (
@@ -66,17 +68,17 @@ function CardComponent(props: Props) {
                 style={{ maxHeight: getMaxHeight() }}
             >
                 <div className="cc-image">
-                    <img src={props.data.image.toString()} alt='product item' />
+                    <img src={props.data.image.toString()} alt='product item' onClick={stopPropagation}/>
                 </div>
                 <div className="cc-info">
                     <div className="cc-price">
-                        <span>Price: {props.data.price.toFixed(2)}&#36;</span>
+                        <span onClick={stopPropagation}>Price: {props.data.price.toFixed(2)}&#36;</span>
                     </div>
-                    <div className="cc-description">
+                    <div className="cc-description" onClick={stopPropagation}>
                         {props.data.description}
                     </div>
                     <div className="cc-action">
-                        <button className="cc-action-btn" onClick={() => navigate('/contacts')}>
+                        <button className="cc-action-btn" onClick={(e) => {navigate('/contacts'); stopPropagation(e)}}>
                             <FaCartPlus className="cc-action-btn-icon" />
                             <span>Add to cart</span>
                         </button>

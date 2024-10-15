@@ -7,12 +7,10 @@ import { Dispatch } from "redux";
 
 export function requestAllProducts() {
     return async function(dispatch: Dispatch<FetchAllProductsAction>) {
-        console.log('Dispatch: ', dispatch)
         dispatch(requestAllProductsAction());
         fetchAllProducts()
             .then((res: Array<Product>) => {
                 setTimeout(() => {
-                    console.log('Fetch products: ', res);
                     dispatch(requestAllProductsSuccessAction(res));
                 });
             })
